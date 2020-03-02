@@ -49,4 +49,10 @@ public class Order {
     private String userId;
     @Column
     private String projectId;
+    @Column
+    private String buyer;
+    @Column
+    private String phone;
+    @Column
+    private String gender;
 }

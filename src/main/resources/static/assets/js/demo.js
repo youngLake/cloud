@@ -13,7 +13,7 @@ Circles.create({
 	styleWrapper: true,
 	styleText:    true
 })
-
+//canceled the notice
 /* $.notify({
 	icon: 'la la-bell',
 	title: 'Bootstrap notify',
