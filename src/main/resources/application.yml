@@ -1,0 +1,16 @@
+server:
+  port: 8001
+spring:
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://10.0.0.1:3306/cloud?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+
+debug: true
