@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
             all=userDao.vaguelyGetAllNormalStatus(request, parameters.getName());
         }
         result.setRows(all.getContent());
-        result.setTotal(all.getTotalPages());
+        result.setTotal(all.getTotalElements());
         return result;
     }
 }

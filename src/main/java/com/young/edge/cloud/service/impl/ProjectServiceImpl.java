@@ -1,20 +1,19 @@
 package com.young.edge.cloud.service.impl;
 
+import com.young.edge.cloud.commen.utils.EntityUtil;
 import com.young.edge.cloud.controller.vo.PageParameters;
 import com.young.edge.cloud.controller.vo.PageResult;
 import com.young.edge.cloud.dao.ProjectDao;
 import com.young.edge.cloud.domain.Project;
 import com.young.edge.cloud.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Tornodo Young
@@ -35,7 +34,7 @@ public class ProjectServiceImpl implements ProjectService {
             all=projectDao.vaguelyGetAllNormalStatus(request, parameters.getName());
         }
         result.setRows(all.getContent());
-        result.setTotal(all.getTotalPages());
+        result.setTotal(all.getTotalElements());
         return result;
     }
 
@@ -52,5 +51,23 @@ public class ProjectServiceImpl implements ProjectService {
                     list.add(map);
                 });
         return list;
+    }
+
+    @Override
+    public int addNewProject(Project project) {
+        if (ObjectUtils.isEmpty(project.getId())){
+            project.setId(UUID.randomUUID().toString());
+            project.setStatus(1);
+        }else {
+            Project example=new Project();
+            example.setId(project.getId());
+            Optional<Project> one = projectDao.findOne(Example.of(example));
+            if (one.isPresent()){
+                Project previous = one.get();
+                EntityUtil.setOldValueForNullField(project,previous,"id","status","userId");
+            }
+        }
+        projectDao.save(project);
+        return 1;
     }
 }

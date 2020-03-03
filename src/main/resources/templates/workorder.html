@@ -93,424 +93,18 @@
 								<!--&lt;!&ndash;<span class="badge badge-danger">25</span>&ndash;&gt;-->
 							<!--</a>-->
 						<!--</li>-->
-						<!-- <li class="nav-item active">
-							<a href="index.html">
-								<i class="la la-dashboard"></i>
-								<p>首页数据概览</p>
-								<span class="badge badge-count">5</span>
-							</a>
-						</li> -->
 					</ul>
 				</div>
 			</div>
 			<div class="main-panel">
 				<div class="content">
+					<div><!-- 按钮触发模态框 -->
+						<button class="btn btn-link btn-lg" data-toggle="modal" data-target="#addNewWorkOrder">
+							新增工单信息
+						</button></div>
 					<div><input class="input" id="workOrderTitleSearch" placeholder="工单标题"><button id="searchWorkOrder" class="btn btn-primary btn-round">搜索</button></div>
 					<div class="container-fluid" id="workOrderTable">
-						<h4 class="page-title">Tables</h4>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Basic Table</div>
-									</div>
-									<div class="card-body">
-										<div class="card-sub">									
-											This is the basic table view of the ready dashboard :
-										</div>
-										<table class="table mt-3">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Striped Rows</div>
-									</div>
-									<div class="card-body">
-										<div class="card-sub">											
-											Add <code class="highlighter-rouge">.table-striped</code> to rows the striped table
-										</div>
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="card-sub">
-											Add <code class="#highlighter-rouge">.table-striped-bg-*states</code> to change background from striped rows
-										</div>
-										<table class="table table-striped table-striped-bg-default mt-3">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-										<table class="table table-striped table-striped-bg-danger mt-4">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Responsive Table</div>
-									</div>
-									<div class="card-body">
-										<div class="card-sub">
-											Create responsive tables by wrapping any table with <code class="highlighter-rouge">.table-responsive</code> <code class="highlighter-rouge">DIV</code> to make them scroll horizontally on small devices
-										</div>
-										<div class="table-responsive">
-											<table class="table table-bordered">
-												<thead>
-													<tr>
-														<th>#</th>
-														<th>Table heading</th>
-														<th>Table heading</th>
-														<th>Table heading</th>
-														<th>Table heading</th>
-														<th>Table heading</th>
-														<th>Table heading</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<th scope="row">1</th>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-													</tr>
-													<tr>
-														<th scope="row">2</th>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-													</tr>
-													<tr>
-														<th scope="row">3</th>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-														<td>Table cell</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Hoverable Table</div>
-									</div>
-									<div class="card-body">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Bordered Table</div>
-									</div>
-									<div class="card-body">
-										<div class="card-sub">
-											Add <code class="highlighter-rouge">.table-bordered</code> to create a bordered table
-										</div>
-										<table class="table table-bordered">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="card-sub">											
-											You can also add <code class="highlighter-rouge">.table-bordered-bd-*states</code> to change the border color of the table
-										</div>
-										<table class="table table-bordered table-bordered-bd-warning mt-4">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="card-sub">
-											It can also add <code class="highlight-rouge">.table-head-bg-*states</code> so that the table header has the same color as the border color of the table
-										</div>
-										<table class="table table-bordered table-head-bg-info table-bordered-bd-info mt-4">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Table Head States</div>
-									</div>
-									<div class="card-body">
-										<table class="table table-head-bg-success">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-										<table class="table table-head-bg-primary mt-4">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 				<footer class="footer">
@@ -542,6 +136,42 @@
 	</div>
 </div>
 </body>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="addNewWorkOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×-->
+				<!--</button>-->
+				<h4 class="modal-title" id="myModalLabel">
+					工单信息
+				</h4>
+			</div>
+			<form id="myWorkOrderForm">
+				<div class="modal-body">
+					<input id="woid" name="woid" type="hidden">
+					工单标题：<input type="text" id="title" name="title" style="width: 70%"><br/>
+					创建时间：<input type="datetime-local" id="createTime" name="createTime" style="width: 70%"><br/>
+					开始时间：<input type="datetime-local" id="startTime" name="startTime" style="width: 70%"><br/>
+					结束时间：<input type="datetime-local" id="endTime" name="endTime" style="width: 70%"><br/>
+					经办人员：<input type="text" id="resolver" name="resolver" style="width: 70%"><br/>
+					联系方式：<input type="tel" id="phone" name="phone" style="width: 70%"><br/>
+					工单描述：<input type="text" id="detail" name="detail" style="width: 70%">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						关闭
+					</button>
+					<button type="button" class="btn btn-primary" id="addWorkOrderBtn">
+						提交
+					</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script src="assets/js/core/jquery.3.2.1.min.js"></script>
 <script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="assets/js/core/popper.min.js"></script>
@@ -588,6 +218,23 @@
 <script src="assets/js/plugin/table/bootstrap-table.js"></script>
 <script src="assets/js/plugin/table/bootstrap-table-zh-CN.js"></script>
 <script>
+	function fillData(index) {
+		var data=$("#workOrderTable").bootstrapTable('getData');
+		var datum=data[index];
+		$("#woid").val(datum.id);
+		$("#title").val(datum.title);
+		$("#createTime").val(datum.createTime.replace(" ","T").substring(0,16));
+		$("#startTime").val(datum.startTime.replace(" ","T").substring(0,16));
+		$("#endTime").val(datum.endTime.replace(" ","T").substring(0,16));
+		$("#resolver").val(datum.resolver);
+		$("#phone").val(datum.phone);
+		$("#detail").val(datum.detail);
+		$('#addNewWorkOrder').modal('show')
+	}
+	function actionFormatter(value,row,index) {
+		var content='<button type="button" class="btn btn-link btn-lg" onclick="fillData('+index+')">编辑</button>';
+		return content;
+	}
     function initTable(name) {
         $("#workOrderTable").bootstrapTable('destroy');
         $("#workOrderTable").bootstrapTable({
@@ -617,18 +264,49 @@
                 colspan: 1,
                 width:100
             }, {
-                title : '项目名称',
-                field : 'name',
+                title : '工单标题',
+                field : 'title',
                 sortable : true,
                 align:'center',
                 colspan: 1
             }, {
-                title : '项目明细',
-                field : 'detail',
-                sortable : true,
-                align:'center',
-                colspan: 1
-            }]
+				title : '创建时间',
+				field : 'createTime',
+				sortable : true,
+				align:'center',
+				colspan: 1
+			}, {
+				title : '开始时间',
+				field : 'startTime',
+				sortable : true,
+				align:'center',
+				colspan: 1
+			}, {
+				title : '结束时间',
+				field : 'endTime',
+				sortable : true,
+				align:'center',
+				colspan: 1
+			}, {
+				title : '经办人员',
+				field : 'resolver',
+				sortable : true,
+				align:'center',
+				colspan: 1
+			}, {
+				title : '联系方式',
+				field : 'phone',
+				sortable : true,
+				align:'center',
+				colspan: 1
+			}, {
+				title : '操作',
+				field : 'opt',
+				sortable : true,
+				align:'center',
+				colspan: 1,
+				formatter:actionFormatter
+			}]
         })
     }
     $(document).ready(function () {
@@ -640,5 +318,64 @@
             initTable(name);
         })
     })
+</script>
+<script>
+	$(function () {
+		$('#addNewWorkOrder').modal('hide')
+	});
+	$(function () {
+		$('#addNewWorkOrder').on('hide.bs.modal', function () {
+			$("#woid").val(null);
+			$("#title").val(null);
+			$("#detail").val(null);
+			$("#createTime").val(null);
+			$("#startTime").val(null);
+			$("#endTime").val(null);
+			$("#resolver").val(null);
+			$("#phone").val(null);
+		})
+	});
+	$("#addWorkOrderBtn").on('click',function () {
+		var woid=$("#woid").val();
+		var title=$("#title").val();
+		var detail=$("#detail").val();
+		var createTime=$("#createTime").val();
+		var startTime=$("#startTime").val();
+		var endTime=$("#endTime").val();
+		var resolver=$("#resolver").val();
+		var phone=$("#phone").val();
+
+		var workOrder={};
+		if (typeof(woid)!="undefined"&&woid!=null&&woid!=""){
+			workOrder.id=woid;
+		}
+		startTime=startTime.replace("T"," ")+":00";
+		endTime=endTime.replace("T"," ")+":00";
+		createTime=createTime.replace("T"," ")+":00";
+		workOrder.title=title;
+		workOrder.detail=detail;
+		workOrder.createTime=createTime;
+		workOrder.startTime=startTime;
+		workOrder.endTime=endTime;
+		workOrder.resolver=resolver;
+		workOrder.phone=phone;
+		$.ajax({
+			url:'addNewWorkOrder',
+			type:"post",
+			data:JSON.stringify(workOrder),
+			contentType: 'application/json',
+			dataType:'json',
+			success:function (data) {
+				if (data.returnCode=="1"){
+					$('#addNewWorkOrder').modal('hide');
+					$.notify({
+						message: '提交成功！',
+						type: 'success'
+					});
+					initTable(null);
+				}
+			}
+		});
+	});
 </script>
 </html>

@@ -93,224 +93,18 @@
 								<!--&lt;!&ndash;<span class="badge badge-danger">25</span>&ndash;&gt;-->
 							<!--</a>-->
 						<!--</li>-->
-						<!-- <li class="nav-item active">
-							<a href="index.html">
-								<i class="la la-dashboard"></i>
-								<p>首页数据概览</p>
-								<span class="badge badge-count">5</span>
-							</a>
-						</li> -->
 					</ul>
 				</div>
 			</div>
 			<div class="main-panel">
 				<div class="content">
+					<div><!-- 按钮触发模态框 -->
+						<button class="btn btn-link btn-lg" data-toggle="modal" data-target="#addNewProject">
+							新增项目信息
+						</button></div>
 					<div><input class="input" id="projectNameSearch" placeholder="项目名称"><button id="searchProject" class="btn btn-primary btn-round">搜索</button></div>
 					<div class="container-fluid" id="projectTable">
-						<h4 class="page-title">Forms</h4>
-						<div class="row">
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header">
-										<div class="card-title">Base Form Control</div>
-									</div>
-									<div class="card-body">
-										<div class="form-group">
-											<label for="email">Email Address</label>
-											<input type="email" class="form-control" id="email" placeholder="Enter Email">
-											<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-										</div>
-										<div class="form-group">
-											<label for="password">Password</label>
-											<input type="password" class="form-control" id="password" placeholder="Password">
-										</div>
-										<div class="form-group form-inline">
-											<label for="inlineinput" class="col-md-3 col-form-label">Inline Input</label>
-											<div class="col-md-9 p-0">
-												<input type="text" class="form-control input-full" id="inlineinput" placeholder="Enter Input">
-											</div>
-										</div>
-										<div class="form-group has-success">
-											<label for="successInput">Success Input</label>
-											<input type="text" id="successInput" value="Success" class="form-control">
-										</div>
-										<div class="form-group has-error has-feedback">
-											<label for="errorInput">Error Input</label>
-											<input type="text" id="errorInput" value="Error" class="form-control">
-											<small id="emailHelp" class="form-text text-muted">Please provide a valid informations.</small>
-										</div>
-										<div class="form-group">
-											<label for="disableinput">Disable Input</label>
-											<input type="text" class="form-control" id="disableinput" placeholder="Enter Input" disabled>
-										</div>
-										<div class="form-check">
-											<label>Gender</label><br/>
-											<label class="form-radio-label">
-												<input class="form-radio-input" type="radio" name="optionsRadios" value=""  checked="">
-												<span class="form-radio-sign">Male</span>
-											</label>
-											<label class="form-radio-label ml-3">
-												<input class="form-radio-input" type="radio" name="optionsRadios" value="">
-												<span class="form-radio-sign">Female</span>
-											</label>
-										</div>
-										<div class="form-group">
-											<label class="control-label">
-												Static
-											</label> <!----> <p class="form-control-static">hello@themekita.com</p> <!---->  <!----></div>
-											<div class="form-group">
-												<label for="exampleFormControlSelect1">Example select</label>
-												<select class="form-control" id="exampleFormControlSelect1">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="exampleFormControlSelect2">Example multiple select</label>
-												<select multiple class="form-control" id="exampleFormControlSelect2">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="exampleFormControlFile1">Example file input</label>
-												<input type="file" class="form-control-file" id="exampleFormControlFile1">
-											</div>
-											<div class="form-group">
-												<label for="comment">Comment</label>
-												<textarea class="form-control" id="comment" rows="5">
 
-												</textarea>
-											</div>
-											<div class="form-check">
-												<label class="form-check-label">
-													<input class="form-check-input" type="checkbox" value="">
-													<span class="form-check-sign">Agree with terms and conditions</span>
-												</label>
-											</div>
-										</div>
-										<div class="card-action">
-											<button class="btn btn-success">Submit</button>
-											<button class="btn btn-danger">Cancel</button>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="card">
-										<div class="card-header">
-											<div class="card-title">Form Control Styles</div>
-										</div>
-										<div class="card-body">
-											<div class="form-group">
-												<label for="squareInput">Square Input</label>
-												<input type="text" class="form-control input-square" id="squareInput" placeholder="Square Input">
-											</div>
-											<div class="form-group">
-												<label for="squareSelect">Square Select</label>
-												<select class="form-control input-square" id="squareSelect">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="pillInput">Pill Input</label>
-												<input type="text" class="form-control input-pill" id="pillInput" placeholder="Pill Input">
-											</div>
-											<div class="form-group">
-												<label for="pillSelect">Pill Select</label>
-												<select class="form-control input-pill" id="pillSelect">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="solidInput">Solid Input</label>
-												<input type="text" class="form-control input-solid" id="solidInput" placeholder="Solid Input">
-											</div>
-											<div class="form-group">
-												<label for="solidSelect">Solid Select</label>
-												<select class="form-control input-solid" id="solidSelect">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>											
-										</div>
-										<div class="card-action">
-											<button class="btn btn-success">Submit</button>
-											<button class="btn btn-danger">Cancel</button>
-										</div>
-									</div>
-									<div class="card">
-										<div class="card-header">
-											<div class="card-title">Form Control Styles</div>
-										</div>
-										<div class="card-body">
-											<div class="form-group">
-												<label for="largeInput">Large Input</label>
-												<input type="text" class="form-control form-control-lg" id="largeInput" placeholder="Large Input">
-											</div>
-											<div class="form-group">
-												<label for="largeInput">Default Input</label>
-												<input type="text" class="form-control form-control" id="defaultInput" placeholder="Default Input">
-											</div>
-											<div class="form-group">
-												<label for="smallInput">Small Input</label>
-												<input type="text" class="form-control form-control-sm" id="smallInput" placeholder="Small Input">
-											</div>
-											<div class="form-group">
-												<label for="largeSelect">Large Select</label>
-												<select class="form-control form-control-lg" id="largeSelect">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="defaultSelect">Default Select</label>
-												<select class="form-control form-control" id="defaultSelect">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="smallSelect">Small Select</label>
-												<select class="form-control form-control-sm" id="smallSelect">
-													<option>1</option>
-													<option>2</option>
-													<option>3</option>
-													<option>4</option>
-													<option>5</option>
-												</select>
-											</div>
-										</div>
-										<div class="card-action">
-											<button class="btn btn-success">Submit</button>
-											<button class="btn btn-danger">Cancel</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 					<footer class="footer">
 						
@@ -341,6 +135,37 @@
 		</div>
 	</div>
 </body>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="addNewProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×-->
+				<!--</button>-->
+				<h4 class="modal-title" id="myModalLabel">
+					项目信息
+				</h4>
+			</div>
+			<form id="myProjectForm">
+				<div class="modal-body">
+					<input id="projectId" name="projectId" type="hidden">
+					项目名称：<input id="projectName" name="projectName" style="width: 70%"><br/>
+					项目描述：<input id="projectDesc" name="projectDesc" style="width: 70%">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						关闭
+					</button>
+					<button type="button" class="btn btn-primary" id="addProjectBtn">
+						提交
+					</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script src="assets/js/core/jquery.3.2.1.min.js"></script>
 <script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="assets/js/core/popper.min.js"></script>
@@ -359,6 +184,18 @@
 <script src="assets/js/plugin/table/bootstrap-table-zh-CN.js"></script>
 <script>
     $("#projectTable").text('');
+	function fillData(index) {
+		var data=$("#projectTable").bootstrapTable('getData');
+		var datum=data[index];
+		$("#projectId").val(datum.id);
+		$("#projectName").val(datum.name);
+		$("#projectDesc").val(datum.detail);
+		$('#addNewProject').modal('show')
+	}
+	function actionFormatter(value,row,index) {
+		var content='<button type="button" class="btn btn-link btn-lg" onclick="fillData('+index+')">编辑</button>';
+		return content;
+	}
     function initTable(name) {
         $("#projectTable").bootstrapTable('destroy');
         $("#projectTable").bootstrapTable({
@@ -386,7 +223,7 @@
                 sortable : true,
                 align:'center',
                 colspan: 1,
-                width:100
+                width:150
             }, {
                 title : '项目名称',
                 field : 'name',
@@ -399,7 +236,14 @@
                 sortable : true,
                 align:'center',
                 colspan: 1
-            }]
+            }, {
+				title : '操作',
+				field : 'opt',
+				sortable : true,
+				align:'center',
+				colspan: 1,
+				formatter:actionFormatter
+			}]
         })
     }
     $(document).ready(function () {
@@ -411,5 +255,46 @@
             initTable(name);
         })
     })
+</script>
+<script>
+	$(function () {
+		$('#addNewProject').modal('hide')
+	});
+	$(function () {
+		$('#addNewProject').on('hide.bs.modal', function () {
+			$("#projectId").val(null);
+			$("#projectName").val(null);
+			$("#projectDesc").val(null);
+		})
+	});
+	$("#addProjectBtn").on('click',function () {
+		var projectId=$("#projectId").val();
+		var projectName=$("#projectName").val();
+		var projectDesc=$("#projectDesc").val();
+
+		var project={};
+		if (typeof(projectId)!="undefined"&&projectId!=null&&projectId!=""){
+			project.id=projectId;
+		}
+		project.name=projectName;
+		project.detail=projectDesc;
+		$.ajax({
+			url:'addNewProject',
+			type:"post",
+			data:JSON.stringify(project),
+			contentType: 'application/json',
+			dataType:'json',
+			success:function (data) {
+				if (data.returnCode=="1"){
+					$('#addNewProject').modal('hide');
+					$.notify({
+						message: '提交成功！',
+						type: 'success'
+					});
+					initTable(null);
+				}
+			}
+		});
+	});
 </script>
 </html>

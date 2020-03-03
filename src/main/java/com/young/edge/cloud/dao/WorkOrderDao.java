@@ -12,6 +12,9 @@ import org.springframework.data.repository.query.Param;
  * @date 2020/3/2 18:21
  */
 public interface WorkOrderDao extends JpaRepository<WorkOrder,String> {
-    @Query(value = "SELECT * FROM workorder WHERE `title` LIKE CONCAT('%',:name,'%')",nativeQuery = true)
+    @Query(value = "SELECT * FROM workorder WHERE `status`=1 AND `title` LIKE CONCAT('%',:name,'%')",nativeQuery = true)
     Page<WorkOrder> vaguelyGetAllNormalStatus(Pageable pageable, @Param("name")String name);
+
+    @Query(value = "SELECT * FROM workorder WHERE `status`=1",nativeQuery = true)
+    Page<WorkOrder> getAllNormalStatus(Pageable pageable);
 }

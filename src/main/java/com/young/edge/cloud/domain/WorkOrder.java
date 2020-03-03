@@ -43,4 +43,8 @@ public class WorkOrder {
     private String resolver;
     @Column
     private String phone;
+    @Column
+    private Integer status;
+    @Column
+    private String userId;
 }
