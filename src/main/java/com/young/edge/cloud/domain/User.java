@@ -31,12 +31,19 @@ public class User {
     private String password;
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
     @Column
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date loginTime;
     @Column
     private Integer status;
+    /**
+     * 1-admin other-normal
+     */
+    @Column
+    private String role;
+    @Column
+    private String roleDesc;
 }

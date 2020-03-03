@@ -28,9 +28,9 @@
 					<div class="user">
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
-									Hizrian
-									<span class="user-level">Administrator</span>
+								<span id="myUserName">
+
+									<span class="user-level"></span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -40,59 +40,59 @@
 								<ul class="nav">
 									<li>
 										<a href="#profile">
-											<span class="link-collapse">My Profile</span>
+											<span class="link-collapse">个人信息</span>
 										</a>
 									</li>
 									<li>
 										<a href="#edit">
-											<span class="link-collapse">Edit Profile</span>
+											<span class="link-collapse">编辑个人信息</span>
 										</a>
 									</li>
 									<li>
-										<a href="#settings">
-											<span class="link-collapse">Settings</span>
+										<a href="logout">
+											<span class="link-collapse">退出登录</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<ul class="nav">
+					<ul class="nav" id="menuNav">
 						<li class="nav-item">
 							<a href="index">
 								<i class="la la-dashboard"></i>
 								<p>首页数据概览</p>
-								<span class="badge badge-count">5</span>
+								<!--<span class="badge badge-count">5</span>-->
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="order">
 								<i class="la la-table"></i>
 								<p>订单管理</p>
-								<span class="badge badge-count">14</span>
+								<!--<span class="badge badge-count">14</span>-->
 							</a>
 						</li>
 						<li class="nav-item  active">
 							<a href="project">
 								<i class="la la-keyboard-o"></i>
 								<p>项目管理</p>
-								<span class="badge badge-count">50</span>
+								<!--<span class="badge badge-count">50</span>-->
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="workorder">
 								<i class="la la-th"></i>
 								<p>工单管理</p>
-								<span class="badge badge-count">6</span>
+								<!--<span class="badge badge-count">6</span>-->
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="user">
-								<i class="la la-font"></i>
-								<p>账户管理</p>
-								<span class="badge badge-danger">25</span>
-							</a>
-						</li>
+						<!--<li class="nav-item">-->
+							<!--<a href="user">-->
+								<!--<i class="la la-font"></i>-->
+								<!--<p>账户管理</p>-->
+								<!--&lt;!&ndash;<span class="badge badge-danger">25</span>&ndash;&gt;-->
+							<!--</a>-->
+						<!--</li>-->
 						<!-- <li class="nav-item active">
 							<a href="index.html">
 								<i class="la la-dashboard"></i>
@@ -105,7 +105,8 @@
 			</div>
 			<div class="main-panel">
 				<div class="content">
-					<div class="container-fluid">
+					<div><input class="input" id="projectNameSearch" placeholder="项目名称"><button id="searchProject" class="btn btn-primary btn-round">搜索</button></div>
+					<div class="container-fluid" id="projectTable">
 						<h4 class="page-title">Forms</h4>
 						<div class="row">
 							<div class="col-md-6">
@@ -353,4 +354,62 @@
 <script src="assets/js/plugin/chart-circle/circles.min.js"></script>
 <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 <script src="assets/js/ready.min.js"></script>
+<script src="assets/js/commen.js"></script>
+<script src="assets/js/plugin/table/bootstrap-table.js"></script>
+<script src="assets/js/plugin/table/bootstrap-table-zh-CN.js"></script>
+<script>
+    $("#projectTable").text('');
+    function initTable(name) {
+        $("#projectTable").bootstrapTable('destroy');
+        $("#projectTable").bootstrapTable({
+            url:"projectList",   //请求地址
+            method: 'post',
+            striped : true, //是否显示行间隔色
+            pageNumber : 1, //初始化加载第一页
+            pagination : true,//是否分页
+            sidePagination : 'server',//server:服务器端分页|client：前端分页
+            pageSize : 5,//单页记录数
+            pageList : [ 5, 10, 20],//可选择单页记录数
+            //showRefresh : true,//刷新按钮
+            queryParams : function(params) {//上传服务器的参数
+                var temp = {
+                    index :params.offset + 0,// SQL语句起始索引
+                    size : params.limit // 每页显示数量
+                };
+                if(name!=null){
+                    temp.name=name;
+                }
+                return temp;
+            },columns : [ {
+                title : '编号',
+                field : 'id',
+                sortable : true,
+                align:'center',
+                colspan: 1,
+                width:100
+            }, {
+                title : '项目名称',
+                field : 'name',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            }, {
+                title : '项目明细',
+                field : 'detail',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            }]
+        })
+    }
+    $(document).ready(function () {
+        $("#projectTable").text('');
+        initTable(null);
+        $("#searchProject").on("click",function s() {
+            var name=$("#projectNameSearch").val();
+            console.log(name);
+            initTable(name);
+        })
+    })
+</script>
 </html>

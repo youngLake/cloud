@@ -1,5 +1,6 @@
 package com.young.edge.cloud.commen.config;
 
+import com.young.edge.cloud.commen.constant.SystemConstant;
 import com.young.edge.cloud.commen.utils.JwtUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,7 +17,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        System.err.println(request);
 //        if (handler instanceof HandlerMethod){
-//            String authHeader = request.getHeader("token");
+//            String authHeader = request.getHeader(SystemConstant.TOKEN);
 //            if (!ObjectUtils.isEmpty(authHeader)){
 //                CheckResult checkResult = JwtUtils.validateJWT(authHeader);
 //                if (checkResult.isSuccess()){
@@ -25,7 +26,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 //            }
 //        }
 //        response.sendError(HttpServletResponse.SC_FORBIDDEN);
-        String token = request.getSession().getAttribute("token").toString();
+        String token = (String) request.getSession().getAttribute(SystemConstant.TOKEN);
         if (!ObjectUtils.isEmpty(token) && JwtUtils.validateJWT(token).isSuccess()){
             return true;
         }

@@ -1,13 +1,20 @@
 package com.young.edge.cloud.service.impl;
 
+import com.young.edge.cloud.commen.utils.ExampleUtil;
 import com.young.edge.cloud.commen.utils.MD5Utils;
+import com.young.edge.cloud.controller.vo.PageParameters;
+import com.young.edge.cloud.controller.vo.PageResult;
 import com.young.edge.cloud.dao.UserDao;
 import com.young.edge.cloud.domain.User;
 import com.young.edge.cloud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
+import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -26,9 +33,50 @@ public class UserServiceImpl implements UserService {
         if (one.isPresent()){
             User result = one.get();
             if (MD5Utils.isEqual(result.getPassword(),user.getPassword())){
-                return "index";
+                result.setLoginTime(new Date());
+                userDao.save(result);
+                return "userId="+result.getId();
             }
         }
         return "redirect:/login";
+    }
+
+    @Override
+    public String getUserNameById(String userId) {
+        User user = ExampleUtil.setSpecificField(new User().getClass(), "id", userId);
+        if (null!=user){
+            Optional<User> one = userDao.findOne(Example.of(user));
+            if (one.isPresent()){
+                return one.get().getUsername();
+            }
+        }
+        return "";
+    }
+
+    @Override
+    public String getMyRole(String userId) {
+        User user = ExampleUtil.setSpecificField(new User().getClass(), "id", userId);
+        if (null!=user){
+            Optional<User> one = userDao.findOne(Example.of(user));
+            if (one.isPresent()){
+                return one.get().getRole();
+            }
+        }
+        return "";
+    }
+
+    @Override
+    public PageResult userList(PageParameters parameters) {
+        PageRequest request=PageRequest.of(parameters.getIndex(),parameters.getSize());
+        PageResult result=new PageResult();
+        Page<User> all;
+        if (ObjectUtils.isEmpty(parameters.getName())){
+            all=userDao.getAllNormalStatus(request);
+        }else {
+            all=userDao.vaguelyGetAllNormalStatus(request, parameters.getName());
+        }
+        result.setRows(all.getContent());
+        result.setTotal(all.getTotalPages());
+        return result;
     }
 }

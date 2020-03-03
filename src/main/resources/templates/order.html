@@ -28,9 +28,9 @@
 					<div class="user">
 						<div class="info">
 							<a class="" data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
-									Hizrian
-									<span class="user-level">Administrator</span>
+								<span id="myUserName">
+
+									<span class="user-level"></span>
 									<span class="caret"></span>
 								</span>
 							</a>
@@ -40,59 +40,59 @@
 								<ul class="nav">
 									<li>
 										<a href="#profile">
-											<span class="link-collapse">My Profile</span>
+											<span class="link-collapse">个人信息</span>
 										</a>
 									</li>
 									<li>
 										<a href="#edit">
-											<span class="link-collapse">Edit Profile</span>
+											<span class="link-collapse">编辑个人信息</span>
 										</a>
 									</li>
 									<li>
-										<a href="#settings">
-											<span class="link-collapse">Settings</span>
+										<a href="logout">
+											<span class="link-collapse">退出登录</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<ul class="nav">
+					<ul class="nav" id="menuNav">
 						<li class="nav-item ">
 							<a href="index">
 								<i class="la la-dashboard"></i>
 								<p>首页数据概览</p>
-								<span class="badge badge-count">5</span>
+								<!--<span class="badge badge-count">5</span>-->
 							</a>
 						</li>
 						<li class="nav-item active">
 							<a href="order">
 								<i class="la la-table"></i>
 								<p>订单管理</p>
-								<span class="badge badge-count">14</span>
+								<!--<span class="badge badge-count">14</span>-->
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="project">
 								<i class="la la-keyboard-o"></i>
 								<p>项目管理</p>
-								<span class="badge badge-count">50</span>
+								<!--<span class="badge badge-count">50</span>-->
 							</a>
 						</li>
 						<li class="nav-item">
 							<a href="workorder">
 								<i class="la la-th"></i>
 								<p>工单管理</p>
-								<span class="badge badge-count">6</span>
+								<!--<span class="badge badge-count">6</span>-->
 							</a>
 						</li>
-						<li class="nav-item">
-							<a href="user">
-								<i class="la la-font"></i>
-								<p>账户管理</p>
-								<span class="badge badge-danger">25</span>
-							</a>
-						</li>
+						<!--<li class="nav-item">-->
+							<!--<a href="user">-->
+								<!--<i class="la la-font"></i>-->
+								<!--<p>账户管理</p>-->
+								<!--&lt;!&ndash;<span class="badge badge-danger">25</span>&ndash;&gt;-->
+							<!--</a>-->
+						<!--</li>-->
 						<!-- <li class="nav-item active">
 							<a href="index.html">
 								<i class="la la-dashboard"></i>
@@ -105,7 +105,12 @@
 			</div>
 			<div class="main-panel">
 				<div class="content">
-					<div class="container-fluid">
+                    <div><!-- 按钮触发模态框 -->
+                        <button class="btn btn-link btn-lg" data-toggle="modal" data-target="#addNewOrder">
+                            新增订单信息
+                        </button></div>
+                    <div><input class="input" id="orderNameSearch" placeholder="购买人手机号"><button id="searchOrder" class="btn btn-link btn-round">搜索</button></div>
+					<div class="container-fluid" id="orderTable">
 						<h4 class="page-title">Component</h4>
 						<div class="row">
 							<div class="col-md-12">
@@ -545,5 +550,274 @@
 			values: [ 75, 300 ]
 		});
 	} );
+</script>
+
+<script src="assets/js/commen.js"></script>
+<script src="assets/js/plugin/table/bootstrap-table.js"></script>
+<script src="assets/js/plugin/table/bootstrap-table-zh-CN.js"></script>
+<script>
+
+    $("#orderTable").text('');
+    function fillData(index) {
+        console.log(index);
+        var data=$("#orderTable").bootstrapTable('getData');
+        console.log(data[index]);
+        var datum=data[index];
+        $("#typeCode").val(datum.typeCode);
+        $("#amout").val(datum.amout);
+        $("#detail").val(datum.detail);
+        console.log(datum.startTime.replace(' ','T').substring(0,16));
+        $("#startTime").val(datum.startTime.replace(' ','T').substring(0,16));
+        $("#endTime").val(datum.endTime.replace(' ','T').substring(0,16));
+        $("#buyer").val(datum.buyer);
+        $("#phone").val(datum.phone);
+        if(datum.gender=="男"){
+            $("#gender").val("1");
+        }else if (datum.gender=="女"){
+            $("#gender").val("2");
+        }else if (datum.gender=="未知"){
+            $("#gender").val("3");
+        }
+        $("#projectId").val(datum.projectId);
+        $('#addNewOrder').modal('show')
+    }
+    function actionFormatter(value,row,index) {
+        var content='<button type="button" class="btn btn-link btn-lg" onclick="fillData('+index+')">编辑</button>';
+        return content;
+    }
+    function initTable(phone) {
+        $("#orderTable").bootstrapTable('destroy');
+        $("#orderTable").bootstrapTable({
+            url:"orderList",   //请求地址
+            method: 'post',
+            striped : true, //是否显示行间隔色
+            pageNumber : 1, //初始化加载第一页
+            pagination : true,//是否分页
+            sidePagination : 'server',//server:服务器端分页|client：前端分页
+            pageSize : 5,//单页记录数
+            pageList : [ 5, 10, 20],//可选择单页记录数
+            //showRefresh : true,//刷新按钮
+            queryParams : function(params) {//上传服务器的参数
+                var temp = {
+                    index :params.offset + 0,// SQL语句起始索引
+                    size : params.limit // 每页显示数量
+                };
+                if(phone!=null){
+                    temp.name=phone;
+                }
+                return temp;
+            },columns : [ {
+                title : '订单编号',
+                field : 'id',
+                sortable : true,
+                align:'center',
+                colspan: 1,
+                width:150
+            }, {
+                title : '订单金额',
+                field : 'amout',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            }, {
+                title : '订单类型',
+                field : 'typeName',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '订单明细',
+                field : 'detail',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '创建时间',
+                field : 'createTime',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '开始时间',
+                field : 'startTime',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '结束时间',
+                field : 'endTime',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '买家姓名',
+                field : 'buyer',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '买家手机',
+                field : 'phone',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '买家性别',
+                field : 'gender',
+                sortable : true,
+                align:'center',
+                colspan: 1
+            },{
+                title : '操作',
+                field : 'opt',
+                sortable : true,
+                align:'center',
+                colspan: 1,
+                formatter:actionFormatter
+            }]
+        })
+    }
+    $(document).ready(function () {
+        $("#orderTable").text('');
+        initTable(null);
+        $("#searchOrder").on("click",function s() {
+            var phone=$("#orderNameSearch").val();
+            console.log(phone);
+            initTable(phone);
+        })
+    })
+</script>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="addNewOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×-->
+                <!--</button>-->
+                <h4 class="modal-title" id="myModalLabel">
+                    订单信息
+                </h4>
+            </div>
+            <form id="myOrderForm">
+                <div class="modal-body">
+                    订单类型：<select id="typeCode" name="typeCode" style="width: 70%">
+                    <option value="1" selected>弹性带宽</option>
+                    <option value="2">国际专线</option>
+                    <option value="3">国内专线</option>
+                </select><br/>
+                    订单金额：<input id="amout" name="amout" type="number" class="input" placeholder="100" style="width: 70%"><br/>
+                    订单明细：<input id="detail" name="detail" type="text" class="input" placeholder="100" style="width: 70%"><br/>
+                    开始时间：<input id="startTime" name="startTime" type="datetime-local" class="input"  style="width: 70%"><br/>
+                    结束时间：<input id="endTime" name="endTime" type="datetime-local" class="input" style="width: 70%"><br/>
+                    买家姓名：<input id="buyer" name="buyer" type="text" class="input" style="width: 70%"><br/>
+                    买家手机：<input id="phone" name="phone" type="tel" class="input" style="width: 70%"><br/>
+                    买家性别：<select name="gender" id="gender" style="width: 70%">
+                                <option value="1" selected>男</option>
+                                <option value="2">女</option>
+                                <option value="3">未知性别</option>
+                            </select><br/>
+                    关联项目：<select id="projectId" name="projectId" style="width: 70%"></select><br/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" id="addOrderBtn">
+                        提交
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+    var projectMap;
+    $(function () {
+        $.ajax({
+            url:"getProjectMap",
+            type:'get',
+            dataType:'json',
+            success:function (data) {
+                if(data.returnCode=="1"){
+                    projectMap=data.data;
+                    for(var index=0;index<projectMap.length;index++){
+                        var op=projectMap[index];
+                        $("#projectId").append('<option value="'+op.id+'">'+op.name+'</option>');
+                    }
+                }
+            }
+        })
+    });
+    $(function () {
+        $('#addNewOrder').modal('hide')
+    });
+    $(function () {
+        $('#addNewOrder').on('hide.bs.modal', function () {
+            $("#typeCode").val(null);
+            $("#amout").val(null);
+            $("#detail").val(null);
+            $("#startTime").val(null);
+            $("#endTime").val(null);
+            $("#buyer").val(null);
+            $("#phone").val(null);
+            $("#gender").val(null);
+            // $("#projectId").val(null);
+        })
+    });
+    $("#addOrderBtn").on('click',function () {
+        var typeCode=$("#typeCode").val();
+        var amout=$("#amout").val();
+        var detail=$("#detail").val();
+        var startTime=$("#startTime").val();
+        var endTime=$("#endTime").val();
+        var buyer=$("#buyer").val();
+        var phone=$("#phone").val();
+        var gender=$("#gender").val();
+        var projectId=$("#projectId").val();
+        startTime=startTime+':00';
+        endTime=endTime+':00';
+        startTime=startTime.replace('T',' ');
+        endTime=endTime.replace('T',' ');
+        var typeName;
+        if(typeCode=="1"){
+            typeName="弹性带宽";
+        }else if (typeCode=="2"){
+            typeName="国际专线";
+        }else if (typeCode=="3"){
+            typeName="国内专线";
+        }
+        var order={};
+        order.typeCode=typeCode;
+        order.typeName=typeName;
+        order.amout=amout;
+        order.detail=detail;
+        order.startTime=startTime;
+        order.endTime=endTime;
+        order.buyer=buyer;
+        order.phone=phone;
+        order.gender=gender;
+        order.projectId=projectId;
+        console.log(order);
+        debugger;
+        $.ajax({
+            url:'addNewOrder',
+            type:"post",
+            data:JSON.stringify(order),
+            contentType: 'application/json',
+            dataType:'json',
+            success:function (data) {
+                if (data.returnCode=="1"){
+                    $('#addNewOrder').modal('hide');
+                    $.notify({
+                        message: '添加成功！',
+                        type: 'success'
+                    });
+                    initTable(null);
+                }
+            }
+        });
+    });
 </script>
 </html>
