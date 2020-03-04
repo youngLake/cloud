@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String loginValidation(User user) {
         User example=new User();
-        user.setLoginName(user.getLoginName());
+        example.setLoginName(user.getLoginName());
         Optional<User> one = userDao.findOne(Example.of(example));
         if (one.isPresent()){
             User result = one.get();
