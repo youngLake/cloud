@@ -1,6 +1,5 @@
 package com.young.edge.cloud.dao;
 
-import com.young.edge.cloud.domain.Project;
 import com.young.edge.cloud.domain.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

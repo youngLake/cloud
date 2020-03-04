@@ -18,3 +18,17 @@ $.ajax(
         }
     }
 );
+
+$.get({
+    url:"/orderAnalysis",
+    dataType:"json",
+    success:function (data) {
+        if (data.returnCode=="1"){
+            debugger;
+            console.log(data.data.top4);
+            console.log(data.data.customers);
+            console.log(data.data.totalAmount);
+            console.log(data.data.workOrders);
+        }
+    }
+});

@@ -49,4 +49,14 @@ public class OrderController extends ParentContrller{
         }
         return err();
     }
+
+    @RequestMapping(value = "/orderAnalysis",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public RSP orderAnalysis(){
+        try {
+            return ok(orderService.orderAnalysis());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return err();
+    }
 }

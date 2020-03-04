@@ -11,4 +11,5 @@ import com.young.edge.cloud.domain.Order;
 public interface OrderService {
     PageResult orderList(PageParameters parameters);
     int addNewOrder(Order order);
+    Object orderAnalysis();
 }

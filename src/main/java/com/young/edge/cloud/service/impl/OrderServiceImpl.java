@@ -60,4 +60,9 @@ public class OrderServiceImpl implements OrderService {
         orderDao.save(order);
         return 1;
     }
+
+    @Override
+    public Object orderAnalysis() {
+        return SystemConstant.orderAnalysis;
+    }
 }

@@ -1,7 +1,10 @@
 package com.young.edge.cloud.commen.constant;
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Tornado Young
@@ -18,6 +21,7 @@ public class SystemConstant {
     public static final String ADMIN_ROLE="1";
     public static final String ADMIN_ROLE_DESC="超级管理员";
     public final static Map<String,String> genderMap=new HashMap<>();
+    public static Map<String,Object> orderAnalysis=new ConcurrentHashMap<>();
     static {
         genderMap.put("1","男");
         genderMap.put("2","女");
