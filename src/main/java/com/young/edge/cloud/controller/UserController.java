@@ -1,5 +1,6 @@
 package com.young.edge.cloud.controller;
 
+import com.young.edge.cloud.commen.constant.RSP;
 import com.young.edge.cloud.commen.constant.SystemConstant;
 import com.young.edge.cloud.commen.utils.JwtUtils;
 import com.young.edge.cloud.controller.vo.PageParameters;
@@ -24,7 +25,7 @@ import java.util.UUID;
  * @date time 2020/3/2 22:57
  */
 @Controller
-public class UserController {
+public class UserController extends ParentContrller{
 
     @Autowired
     private UserService userService;
@@ -97,5 +98,20 @@ public class UserController {
             e.printStackTrace();
         }
         return new PageResult();
+    }
+
+    @RequestMapping(value = "/addNewUser",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public RSP addNewUser(@RequestBody User user,HttpServletRequest request){
+        try {
+            Object userId = request.getSession().getAttribute(SystemConstant.USER_ID);
+            if (!ObjectUtils.isEmpty(userId)){
+                user.setRoleDesc(userId+"");
+            }
+            return ok(userService.addNewUser(user));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return err();
     }
 }

@@ -105,6 +105,11 @@
 			</div>
 			<div class="main-panel">
 				<div class="content">
+					<div><!-- 按钮触发模态框 -->
+						<button class="btn btn-link btn-lg" data-toggle="modal" data-target="#addNewUser">
+							新增工单信息
+						</button>
+                    </div>
                     <div><input class="input" id="userNameSearch" placeholder="用户名"><button id="searchUser" class="btn btn-primary btn-round">搜索</button></div>
 					<div class="container-fluid" id="userTable">
 
@@ -138,6 +143,39 @@
 		</div>
 	</div>
 </body>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="addNewUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×-->
+                <!--</button>-->
+                <h4 class="modal-title" id="myModalLabel">
+                    工单信息
+                </h4>
+            </div>
+            <form id="myUserForm">
+                <div class="modal-body">
+                    <input id="userId" name="userId" type="hidden">
+                    登陆名称：<input type="text" id="loginName" name="loginName" style="width: 70%"><br/>
+                    昵称名称：<input type="text" id="username" name="username" style="width: 70%"><br/>
+                    登陆密码：<input type="password" id="password" name="password" style="width: 70%"><br/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        关闭
+                    </button>
+                    <button type="button" class="btn btn-primary" id="addUserBtn">
+                        提交
+                    </button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 <script src="assets/js/core/jquery.3.2.1.min.js"></script>
 <script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="assets/js/core/popper.min.js"></script>
@@ -156,6 +194,18 @@
 <script src="assets/js/plugin/table/bootstrap-table-zh-CN.js"></script>
 <script>
     $("#userTable").text('');
+    function fillData(index) {
+        var data=$("#userTable").bootstrapTable('getData');
+        var datum=data[index];
+        $("#userId").val(datum.id);
+        $("#loginName").val(datum.loginName);
+        $("#username").val(datum.username);
+        $('#addNewUser').modal('show')
+    }
+    function actionFormatter(value,row,index) {
+        var content='<button type="button" class="btn btn-link btn-lg" onclick="fillData('+index+')">编辑</button>';
+        return content;
+    }
     function initTable(name) {
         $("#userTable").bootstrapTable('destroy');
         $("#userTable").bootstrapTable({
@@ -208,6 +258,13 @@
                 sortable : true,
                 align:'center',
                 colspan: 1
+            }, {
+                title : '操作',
+                field : 'opt',
+                sortable : true,
+                align:'center',
+                colspan: 1,
+                formatter:actionFormatter
             }]
         })
     }
@@ -220,5 +277,49 @@
             initTable(name);
         })
     })
+</script>
+<script>
+    $(function () {
+        $('#addNewUser').modal('hide')
+    });
+    $(function () {
+        $('#addNewUser').on('hide.bs.modal', function () {
+            $("#userId").val(null);
+            $("#loginName").val(null);
+            $("#username").val(null);
+            $("#password").val(null);
+        })
+    });
+    $("#addUserBtn").on('click',function () {
+        var userId=$("#userId").val();
+        var loginName=$("#loginName").val();
+        var username=$("#username").val();
+        var password=$("#password").val();
+
+        var userData={};
+        if (typeof(userId)!="undefined"&&userId!=null&&userId!=""){
+            userData.id=userId;
+        }
+        userData.loginName=loginName;
+        userData.username=username;
+        userData.password=password;
+        $.ajax({
+            url:'addNewUser',
+            type:"post",
+            data:JSON.stringify(userData),
+            contentType: 'application/json',
+            dataType:'json',
+            success:function (data) {
+                if (data.returnCode=="1"){
+                    $('#addNewUser').modal('hide');
+                    $.notify({
+                        message: '提交成功！',
+                        type: 'success'
+                    });
+                    initTable(null);
+                }
+            }
+        });
+    });
 </script>
 </html>

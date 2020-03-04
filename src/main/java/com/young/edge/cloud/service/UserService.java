@@ -17,4 +17,6 @@ public interface UserService {
     String getMyRole(String userId);
 
     PageResult userList(PageParameters parameters);
+
+    int addNewUser(User user);
 }
