@@ -29,14 +29,14 @@ Circles.create({
 
 // monthlyChart
 
-Chartist.Pie('#monthlyChart', {
-	labels: ['50%', '20%', '30%'],
-	series: [50, 20, 30]
-}, {
-	plugins: [
-	Chartist.plugins.tooltip()
-	]
-});
+// Chartist.Pie('#monthlyChart', {
+// 	labels: ['50%', '20%', '30%'],
+// 	series: [50, 20, 30]
+// }, {
+// 	plugins: [
+// 	Chartist.plugins.tooltip()
+// 	]
+// });
 
 // trafficChart
 var chart = new Chartist.Line('#trafficChart', {
@@ -85,7 +85,7 @@ var responsiveChartSales = [
 }]
 ];
 
-Chartist.Bar('#salesChart', dataSales, optionChartSales, responsiveChartSales);
+//Chartist.Bar('#salesChart', dataSales, optionChartSales, responsiveChartSales);
 
 $(".mapcontainer").mapael({
 	map : {

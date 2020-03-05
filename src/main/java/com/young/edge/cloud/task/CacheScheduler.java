@@ -1,14 +1,11 @@
 package com.young.edge.cloud.task;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.young.edge.cloud.commen.constant.SystemConstant;
 import com.young.edge.cloud.dao.OrderDao;
 import com.young.edge.cloud.dao.ProjectDao;
 import com.young.edge.cloud.dao.WorkOrderDao;
 import com.young.edge.cloud.domain.Order;
 import com.young.edge.cloud.domain.Project;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -64,7 +61,10 @@ public class CacheScheduler {
                         projectExample.setId(s);
                         Optional<Project> one = projectDao.findOne(Example.of(projectExample));
                         if (one.isPresent()){
-                            top4Projects.add(one.get().getName());
+                            Map<String,String> map=new HashMap<>();
+                            map.put("projectName",one.get().getName());
+                            map.put("projectCount",projectMap.get(s).size()+"");
+                            top4Projects.add(map);
                         }
                     });
             SystemConstant.orderAnalysis.put("top4",top4Projects);
@@ -104,7 +104,7 @@ public class CacheScheduler {
             int thisYear = calendar.get(Calendar.YEAR);
             for (int i = 0; i <12 ; i++) {
                 int month=i+1;
-                months.put(thisYear+"-"+month,0);
+                months.put(thisYear+"-"+(month<10?"0"+month:month),0);
             }
             validOrderList.stream()
                     .filter(order -> !ObjectUtils.isEmpty(order.getCreateTime()))
@@ -113,11 +113,16 @@ public class CacheScheduler {
                         int year = calendar.get(Calendar.YEAR);
                         if (year==thisYear){
                             int month = calendar.get(Calendar.MONTH)+ 1;
-                            String key=year+"-"+month;
+                            String key=year+"-"+(month<10?"0"+month:month);
                             months.replace(key,months.get(key)+1);
                         }
                     });
-            SystemConstant.orderAnalysis.put("months",months);
+            List<String> monthlyData=new ArrayList();
+            for (String s : months.keySet()) {
+                monthlyData.add(s+"==="+months.get(s));
+            }
+            monthlyData=monthlyData.stream().sorted().collect(Collectors.toList());
+            SystemConstant.orderAnalysis.put("months",monthlyData);
             log.debug("{} is done.......",this.getClass().getCanonicalName());
         }catch (Exception e){
             e.printStackTrace();
