@@ -39,12 +39,7 @@
 							<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
 								<ul class="nav">
 									<li>
-										<a href="#profile">
-											<span class="link-collapse">个人信息</span>
-										</a>
-									</li>
-									<li>
-										<a href="#edit">
+										<a href="#" onclick="editMyProfile()">
 											<span class="link-collapse">编辑个人信息</span>
 										</a>
 									</li>
@@ -99,11 +94,11 @@
 			<div class="main-panel">
 				<div class="content">
 					<div><!-- 按钮触发模态框 -->
-						<button class="btn btn-link btn-lg" data-toggle="modal" data-target="#addNewProject">
+						<button class="btn btn-link" data-toggle="modal" data-target="#addNewProject">
 							新增项目信息
 						</button>
 					</div>
-					<div><input class="input" id="projectNameSearch" placeholder="项目名称"><button id="searchProject" class="btn btn-primary btn-round">搜索</button></div>
+					<div><input class="input" id="projectNameSearch" placeholder="项目名称"><button id="searchProject" class="btn btn-link">搜索</button></div>
 					<div class="container-fluid" id="projectTable">
 
 					</div>
@@ -166,6 +161,39 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×-->
+				<!--</button>-->
+				<h4 class="modal-title">
+					个人信息
+				</h4>
+			</div>
+			<form id="myProfileForm">
+				<div class="modal-body">
+					<input id="myUserId" name="myUserId" type="hidden">
+					登陆名称：<input id="myLoginName" name="myLoginName" type="text" class="input"  style="width: 70%"><br/>
+					用户名称：<input id="myUsername1" name="myUsername1" type="text" class="input" style="width: 70%"><br/>
+					登陆密码：<input id="myPassword" name="myPassword" type="password" class="input"  style="width: 70%"><br/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						关闭
+					</button>
+					<button type="button" class="btn btn-primary" id="updateProfile">
+						提交
+					</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 <script src="assets/js/core/jquery.3.2.1.min.js"></script>
 <script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
@@ -298,4 +326,7 @@
 		});
 	});
 </script>
+
+
+
 </html>

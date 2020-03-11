@@ -103,4 +103,29 @@ public class UserServiceImpl implements UserService {
         userDao.save(user);
         return 1;
     }
+
+    @Override
+    public User getMyProfile(String userId) {
+        Optional<User> user = userDao.findById(userId);
+        return user.isPresent()?user.get():null;
+    }
+
+    @Override
+    public int updateProfile(User user) {
+        User example=new User();
+        example.setId(user.getId());
+        Optional<User> one = userDao.findOne(Example.of(example));
+        if (one.isPresent()){
+            User previous = one.get();
+            if (!ObjectUtils.isEmpty(user.getPassword()) && !"".equals(user.getPassword())){
+                user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+                EntityUtil.setOldValueForNullField(user,previous,"createTime","loginTime","status","role","roleDesc");
+            }else {
+                EntityUtil.setOldValueForNullField(user,previous,"createTime","loginTime","status","role","roleDesc","password");
+            }
+            userDao.save(user);
+            return 1;
+        }
+        return 0;
+    }
 }

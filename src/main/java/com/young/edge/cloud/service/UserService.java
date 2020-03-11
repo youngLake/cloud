@@ -19,4 +19,8 @@ public interface UserService {
     PageResult userList(PageParameters parameters);
 
     int addNewUser(User user);
+
+    User getMyProfile(String userId);
+
+    int updateProfile(User user);
 }

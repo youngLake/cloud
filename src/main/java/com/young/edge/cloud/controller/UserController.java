@@ -114,4 +114,38 @@ public class UserController extends ParentContrller{
         }
         return err();
     }
+
+    @RequestMapping(value = "/getMyProfile",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public RSP getMyProfile(HttpServletRequest request){
+        try {
+            Object userId = request.getSession().getAttribute(SystemConstant.USER_ID);
+            if (!ObjectUtils.isEmpty(userId)){
+                return ok(userService.getMyProfile(userId.toString()));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return err();
+    }
+
+    @RequestMapping(value = "/updateProfile",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public RSP updateProfile(@RequestBody User user){
+        try {
+//            String userId = request.getParameter("myUserId");
+//            String myLoginName = request.getParameter("myLoginName");
+//            String myUsername1 = request.getParameter("myUsername1");
+//            String myPassword = request.getParameter("myPassword");
+//            User user=new User();
+//            user.setId(userId);
+//            user.setLoginName(myLoginName);
+//            user.setUsername(myUsername1);
+//            user.setPassword(myPassword);
+            return ok(userService.updateProfile(user));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return err();
+    }
 }

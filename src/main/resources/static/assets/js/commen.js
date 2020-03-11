@@ -39,3 +39,52 @@ function judgeRole(gurl,eid) {
 }
 //根据角色显示账户管理
 judgeRole("getMyRole","menuNav");
+
+//编辑用户信息
+function editMyProfile(){
+    $.get({
+        url:"/getMyProfile",
+        dataType:"json",
+        success:function (data) {
+            if (data.returnCode=="1"){
+                $("#editProfile").modal('show');
+                $("#myUserId").val(data.data.id);
+                $("#myLoginName").val(data.data.loginName);
+                $("#myUsername1").val(data.data.username);
+                $("#myPassword").val('');
+            }
+        }
+    });
+}
+//
+// $("#updateProfile").onclick(function updateProfile() {
+
+// });
+
+$(document).on('click', '#updateProfile', function() {
+    var user={};
+    user.id=$("#myUserId").val();
+    user.loginName=$("#myLoginName").val();
+    user.username=$("#myUserName1").val();
+    user.password=$("#myPassword").val();
+    $.post({
+        url:"/updateProfile",
+        type:"post",
+        data:JSON.stringify(user),
+        contentType: 'application/json',
+        dataType:'json',
+        success:function (data) {
+            if (data.returnCode=="1"){
+                $("#editProfile").modal('hide');
+                $.notify({
+                    message: '修改成功！',
+                    type: 'success'
+                });
+                $("#myUserId").val('');
+                $("#myLoginName").val('');
+                $("#myUserName1").val('');
+                $("#myPassword").val('');
+            }
+        }
+    });
+});

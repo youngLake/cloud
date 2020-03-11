@@ -39,12 +39,7 @@
 							<div class="collapse in" id="collapseExample" aria-expanded="true" style="">
 								<ul class="nav">
 									<li>
-										<a href="#profile">
-											<span class="link-collapse">个人信息</span>
-										</a>
-									</li>
-									<li>
-										<a href="#edit">
+										<a href="#" onclick="editMyProfile()">
 											<span class="link-collapse">编辑个人信息</span>
 										</a>
 									</li>
@@ -110,7 +105,7 @@
 							新增工单信息
 						</button>
                     </div>
-                    <div><input class="input" id="userNameSearch" placeholder="用户名"><button id="searchUser" class="btn btn-primary btn-round">搜索</button></div>
+                    <div><input class="input" id="userNameSearch" placeholder="用户名"><button id="searchUser" class="btn btn-link">搜索</button></div>
 					<div class="container-fluid" id="userTable">
 
 					</div>
@@ -322,4 +317,35 @@
         });
     });
 </script>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×-->
+				<!--</button>-->
+				<h4 class="modal-title">
+					个人信息
+				</h4>
+			</div>
+			<form id="myProfileForm">
+				<div class="modal-body">
+					<input id="myUserId" name="myUserId" type="hidden">
+					登陆名称：<input id="myLoginName" name="myLoginName" type="text" class="input"  style="width: 70%"><br/>
+					用户名称：<input id="myUsername1" name="myUsername1" type="text" class="input" style="width: 70%"><br/>
+					登陆密码：<input id="myPassword" name="myPassword" type="password" class="input"  style="width: 70%"><br/>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						关闭
+					</button>
+					<button type="button" class="btn btn-primary" id="updateProfile">
+						提交
+					</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </html>
