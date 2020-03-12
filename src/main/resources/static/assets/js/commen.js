@@ -65,7 +65,7 @@ $(document).on('click', '#updateProfile', function() {
     var user={};
     user.id=$("#myUserId").val();
     user.loginName=$("#myLoginName").val();
-    user.username=$("#myUserName1").val();
+    user.username=$("#myUsername1").val();
     user.password=$("#myPassword").val();
     $.post({
         url:"/updateProfile",
@@ -80,9 +80,10 @@ $(document).on('click', '#updateProfile', function() {
                     message: '修改成功！',
                     type: 'success'
                 });
+                echoUserName("getMyUserName","myUserName");
                 $("#myUserId").val('');
                 $("#myLoginName").val('');
-                $("#myUserName1").val('');
+                $("#myUsername1").val('');
                 $("#myPassword").val('');
             }
         }
