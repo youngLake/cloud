@@ -9,10 +9,7 @@ import com.young.edge.cloud.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -54,6 +51,17 @@ public class OrderController extends ParentContrller{
     public RSP orderAnalysis(){
         try {
             return ok(orderService.orderAnalysis());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return err();
+    }
+
+    @RequestMapping(value = "/deleteOrderById",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public RSP deleteOrderById(@RequestParam("id")String id){
+        try {
+            return ok(orderService.deleteOrderById(id));
         }catch (Exception e){
             e.printStackTrace();
         }

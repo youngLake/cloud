@@ -23,4 +23,6 @@ public interface UserService {
     User getMyProfile(String userId);
 
     int updateProfile(User user);
+
+    int deleteUserById(String id);
 }

@@ -15,4 +15,5 @@ public interface ProjectService {
     PageResult projectList(PageParameters parameters);
     List<Map<String,String>> getProjectMap();
     int addNewProject(Project project);
+    int deleteProjectById(String id);
 }

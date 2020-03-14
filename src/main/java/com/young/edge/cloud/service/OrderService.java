@@ -12,4 +12,5 @@ public interface OrderService {
     PageResult orderList(PageParameters parameters);
     int addNewOrder(Order order);
     Object orderAnalysis();
+    int deleteOrderById(String id);
 }

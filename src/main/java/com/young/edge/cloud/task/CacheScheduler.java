@@ -41,7 +41,7 @@ public class CacheScheduler {
             log.debug("{} is working.......",this.getClass().getCanonicalName());
             List<Order> validOrderList = orderDao.findAll()
                     .stream()
-                    .filter(order -> order.getStatus() == 1)
+                    .filter(order -> order.getStatus()!=null &&order.getStatus() == 1)
                     .collect(Collectors.toList());
             BigDecimal totalAmount=validOrderList.stream()
                     .filter(order -> !ObjectUtils.isEmpty(order.getAmout()))
@@ -75,7 +75,7 @@ public class CacheScheduler {
             SystemConstant.orderAnalysis.put("customers",customers);
             int workOrders = workOrderDao.findAll()
                     .stream()
-                    .filter(workOrder -> workOrder.getStatus() == 1)
+                    .filter(workOrder -> workOrder.getStatus()!=null && workOrder.getStatus() == 1)
                     .collect(Collectors.toList())
                     .size();
             SystemConstant.orderAnalysis.put("workOrders",workOrders);

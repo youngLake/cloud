@@ -9,10 +9,7 @@ import com.young.edge.cloud.service.WorkOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,6 +40,18 @@ public class WorkOrderController extends ParentContrller{
                 workOrder.setUserId(userId.toString());
             }
             return ok(workOrderService.addNewWorkOrder(workOrder)+"");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return err();
+    }
+
+
+    @RequestMapping(value = "/deleteWorkOrderById",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public RSP deleteWorkOrderById(@RequestParam("id")String id){
+        try {
+            return ok(workOrderService.deleteWorkOrderById(id));
         }catch (Exception e){
             e.printStackTrace();
         }

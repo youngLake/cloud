@@ -56,4 +56,18 @@ public class WorkOrderServiceImpl implements WorkOrderService {
         workOrderDao.save(workOrder);
         return 1;
     }
+
+    @Override
+    public int deleteWorkOrderById(String id) {
+        WorkOrder example=new WorkOrder();
+        example.setId(id);
+        Optional<WorkOrder> one = workOrderDao.findOne(Example.of(example));
+        if (one.isPresent()){
+            WorkOrder workOrder = one.get();
+            workOrder.setStatus(2);
+            workOrderDao.save(workOrder);
+            return 1;
+        }
+        return 0;
+    }
 }

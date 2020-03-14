@@ -65,4 +65,18 @@ public class OrderServiceImpl implements OrderService {
     public Object orderAnalysis() {
         return SystemConstant.orderAnalysis;
     }
+
+    @Override
+    public int deleteOrderById(String id) {
+        Order example=new Order();
+        example.setId(id);
+        Optional<Order> one = orderDao.findOne(Example.of(example));
+        if (one.isPresent()){
+            Order order = one.get();
+            order.setStatus(2);
+            orderDao.save(order);
+            return 1;
+        }
+        return 0;
+    }
 }

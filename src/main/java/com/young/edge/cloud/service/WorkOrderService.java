@@ -11,4 +11,5 @@ import com.young.edge.cloud.domain.WorkOrder;
 public interface WorkOrderService {
     PageResult workOrderList(PageParameters parameters);
     int addNewWorkOrder(WorkOrder workOrder);
+    int deleteWorkOrderById(String id);
 }

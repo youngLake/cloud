@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
     public String loginValidation(User user) {
         User example=new User();
         example.setLoginName(user.getLoginName());
+        example.setStatus(1);
         Optional<User> one = userDao.findOne(Example.of(example));
         if (one.isPresent()){
             User result = one.get();
@@ -123,6 +124,20 @@ public class UserServiceImpl implements UserService {
             }else {
                 EntityUtil.setOldValueForNullField(user,previous,"createTime","loginTime","status","role","roleDesc","password");
             }
+            userDao.save(user);
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public int deleteUserById(String id) {
+        User example=new User();
+        example.setId(id);
+        Optional<User> one = userDao.findOne(Example.of(example));
+        if (one.isPresent()){
+            User user = one.get();
+            user.setStatus(2);
             userDao.save(user);
             return 1;
         }

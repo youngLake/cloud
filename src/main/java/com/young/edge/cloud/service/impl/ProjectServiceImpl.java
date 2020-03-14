@@ -70,4 +70,18 @@ public class ProjectServiceImpl implements ProjectService {
         projectDao.save(project);
         return 1;
     }
+
+    @Override
+    public int deleteProjectById(String id) {
+        Project example=new Project();
+        example.setId(id);
+        Optional<Project> one = projectDao.findOne(Example.of(example));
+        if (one.isPresent()){
+            Project project = one.get();
+            project.setStatus(2);
+            projectDao.save(project);
+            return 1;
+        }
+        return 0;
+    }
 }

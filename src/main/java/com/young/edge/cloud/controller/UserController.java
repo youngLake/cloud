@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,7 +61,7 @@ public class UserController extends ParentContrller{
         return "";
     }
 
-    @RequestMapping(value = "getMyRole")
+    @RequestMapping(value = "/getMyRole")
     @ResponseBody
     public String getMyRole(HttpServletRequest request){
         try {
@@ -143,6 +140,19 @@ public class UserController extends ParentContrller{
 //            user.setUsername(myUsername1);
 //            user.setPassword(myPassword);
             return ok(userService.updateProfile(user));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return err();
+    }
+
+
+    @RequestMapping(value = "/deleteUserById",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public RSP deleteUserById(@RequestParam("id")String id,HttpServletRequest request){
+        try {
+            int i = userService.deleteUserById(id);
+            return ok(i);
         }catch (Exception e){
             e.printStackTrace();
         }
