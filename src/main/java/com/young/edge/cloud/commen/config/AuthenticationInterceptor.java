@@ -26,10 +26,13 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 //            }
 //        }
 //        response.sendError(HttpServletResponse.SC_FORBIDDEN);
+        //从session中获取标识 toekn
         String token = (String) request.getSession().getAttribute(SystemConstant.TOKEN);
+        //如果token存在，通过用户请求，返回 true
         if (!ObjectUtils.isEmpty(token) && JwtUtils.validateJWT(token).isSuccess()){
             return true;
         }
+        //如果token不存在，则重定向到登录界面
         response.sendRedirect("/login");
         return false;
     }

@@ -37,6 +37,7 @@ public class OrderServiceImpl implements OrderService {
         }
         PageResult result=new PageResult();
         result.setTotal(all.getTotalElements());
+        all.getContent().forEach(order -> order.setGender(SystemConstant.genderMap.get(order.getGender())));
         result.setRows(all.getContent());
         return result;
     }
