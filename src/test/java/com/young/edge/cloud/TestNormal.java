@@ -1,6 +1,12 @@
 package com.young.edge.cloud;
 
-import org.springframework.util.DigestUtils;
+import com.young.edge.cloud.mt.MultiThreadTest1;
+import com.young.edge.cloud.mt.MultiThreadTest2;
+import com.young.edge.cloud.mt.MultiThreadTestInterface;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * @author Tornado Young
@@ -8,7 +14,20 @@ import org.springframework.util.DigestUtils;
  */
 public class TestNormal {
     public static void main(String[] args) {
-        String s = DigestUtils.md5DigestAsHex("111111".getBytes());
-        System.out.println(s);
+        List<MultiThreadTestInterface> list=new ArrayList<>();
+        for (int i = 0; i <100 ; i++) {
+            if (i%2==0){
+                list.add(new MultiThreadTest1(i));
+            }else {
+                list.add(new MultiThreadTest2(i));
+            }
+        }
+        //list.forEach(MultiThreadTestInterface::run);
+        System.err.println("=======================");
+        BlockingQueue<Runnable> queue=new ArrayBlockingQueue<>(list.size(),true);
+        ThreadPoolExecutor executor= new ThreadPoolExecutor(10,20,3, TimeUnit.SECONDS,queue);
+        executor.prestartAllCoreThreads();
+        list.forEach(executor::execute);
+        executor.shutdown();
     }
 }
